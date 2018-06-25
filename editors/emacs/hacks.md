@@ -525,6 +525,17 @@ Not exactly formatting, but you can certainly re-indent an entire buffer with th
     (untabify (point-min) (point-max))))
 ```
 
+If you have [scalafmt](https://scalameta.org/scalafmt) installed, you can add the following to simplify the call to format the current file (thanks to https://github.com/d1egoaz/dotfiles)
+
+```elisp
+(defun scalafmt-file ()
+  (interactive)
+  (let ((str (concat "scalafmt -f \"" buffer-file-name "\" -i")))
+    (message str)
+    (shell-command-to-string str))
+  (message "scalafmt done"))
+```
+
 ### All Together
 
 Here's a fully worked example which pulls in a few more minor modes that you might like
